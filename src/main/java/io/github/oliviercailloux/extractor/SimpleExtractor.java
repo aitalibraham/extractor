@@ -9,14 +9,10 @@ import java.util.List;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
-import org.apache.pdfbox.text.PDFTextStripper;
 
 /**
  * <p>
- * Extracts text from PDF. Uses a default {@link PDFTextStripper} if none is
- * provided. It is also possible to provide an instance of
- * {@link PDFTextStripper} (using {@link #setStripper(PDFTextStripper)}), in
- * which case that instance will be used instead of a default one.
+ * Extracts text from PDF.
  * </p>
  * <p>
  * Following the usual practice, this object does not close the resources it is
@@ -27,14 +23,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
  *
  */
 public interface SimpleExtractor {
-	/**
-	 * Sets the text stripper to use in place of the default one.
-	 *
-	 * @param stripper the stripper to use, <code>null</code> to use the default
-	 *                 stripper
-	 */
-	public void setStripper(PDFTextStripper stripper);
-
 	/**
 	 * <p>
 	 * Extracts text found in the given document, and writes it to the given
@@ -47,7 +35,6 @@ public interface SimpleExtractor {
 	 *                 <code>null</code> if <code>input</code> is not null,
 	 *                 otherwise, may be <code>null</code>
 	 * @throws IOException in case of a reading, parsing or writing error
-	 * @see #setStripper(PDFTextStripper)
 	 */
 	public void writeTextFromDocument(PDDocument document, Writer output) throws IOException;
 
@@ -67,7 +54,6 @@ public interface SimpleExtractor {
 	 * @throws InvalidPasswordException if the PDF required a non-empty password
 	 * @throws IOException              in case of a reading, parsing or writing
 	 *                                  error
-	 * @see #setStripper(PDFTextStripper)
 	 */
 	public void writeText(InputStream input, Writer output) throws IOException;
 
@@ -86,7 +72,6 @@ public interface SimpleExtractor {
 	 * @throws InvalidPasswordException if a PDF required a non-empty password
 	 * @throws IOException              in case of a reading, parsing or writing
 	 *                                  error
-	 * @see #setStripper(PDFTextStripper)
 	 */
 	public void writeAllText(Collection<Path> inputPaths, Writer output) throws IOException;
 
@@ -105,7 +90,6 @@ public interface SimpleExtractor {
 	 *
 	 * @throws InvalidPasswordException if a PDF required a non-empty password
 	 * @throws IOException              in case of a reading or parsing error
-	 * @see #setStripper(PDFTextStripper)
 	 */
 	public List<String> getAllText(Collection<Path> inputPaths) throws IOException;
 }

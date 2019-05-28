@@ -32,11 +32,6 @@ public class MySimpleExtractor implements SimpleExtractor {
 	}
 
 	@Override
-	public void setStripper(PDFTextStripper stripper) {
-		pdfTextStripper = stripper;
-	}
-
-	@Override
 	public void writeTextFromDocument(PDDocument document, Writer output) throws IOException {
 		if (document == null) {
 			return;
